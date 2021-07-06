@@ -11,15 +11,15 @@ form{
   border: 1px solid black;
   
 }
-.user:nth-child(2n + 1) {
+.user:nth-child(2n + 2) {
   background: linear-gradient(
-    90deg,
+    70deg,
     rgb(252, 40, 3) 10%,
     rgb(7, 245, 58) 100%
   );
 }
 
-.user:nth-child(2n + 2) {
+.user:nth-child(2n + 3) {
   background: linear-gradient(
     90deg,
     rgb(252, 40, 3) 10%,
@@ -27,7 +27,7 @@ form{
   );
 }
 
-.user:nth-child(2n + 3) {
+.user:nth-child(2n + 4) {
   background: linear-gradient(
     90deg,
     rgba(20, 159, 255, 1) 10%,
