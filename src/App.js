@@ -4,6 +4,19 @@ import UserList from "./Components/UserList";
 import "./App.css";
 
 class App extends Component {
+<<<<<<< HEAD
+=======
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [
+        { name: 'John',
+          email: 'john@gmail.com',
+          age: '20' }
+      ],
+    };
+  }
+>>>>>>> 3013a09dc714b346b21345a31c1765eba454fdda
   handleAddUser = (newUser) => {
     newUser.id = Math.random().toString();
     this.setState({
