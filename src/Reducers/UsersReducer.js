@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+ 
 import { ADD_USER } from "../actions/UsersActions";
 
 const initialState = {
@@ -12,21 +12,6 @@ const UsersReducer=(state=initialState, action) => {
             case ADD_USER:
                 return  { ...state.users, users: [...state.users, action.payload] };
 
-=======
-const initial = {
-    users: [
-        { name: 'John',
-          email: 'john@gmail.com',
-          age: '20' }
-      ],
-}
-
-const UsersReducer=(state={initial}, action) => {
-        switch (action.type) {
-            case 'ADD_USER':
-                return state
-                
->>>>>>> 3013a09dc714b346b21345a31c1765eba454fdda
             default:
                 return state
         }
