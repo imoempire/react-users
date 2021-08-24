@@ -3,14 +3,16 @@ import { Button } from 'react-bootstrap';
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Modal from "react-bootstrap/Modal";
+import { connect } from "react-redux";
+import { deleteUser } from "../actions/UsersActions";
 import EditForm from '../Components/EditForm'
 
-const User = ({ user, handleDelete, handleEdit }) => {
+const User = ({ user, deleteUser, handleEdit }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const deleteHandle = (e) => {
-      handleDelete(user.id);
+      deleteUser(user.id);
     };
   return (
     <>
@@ -42,4 +44,10 @@ const User = ({ user, handleDelete, handleEdit }) => {
   );
 };
 
-export default User;
+
+const mapDispatchToProps={
+
+    deleteUser: deleteUser
+}
+
+export default connect(null, mapDispatchToProps)(User);

@@ -17,11 +17,10 @@ const UserList = ({ users, handleDelete, handleEdit }) => {
 };
 
 
-const mapStateToProps = (state) => {
-  return {
-    users: state.users,
-  }
+const mapStateToProps = (state)=>{
+   return {
+    users: state.users
+   }
 }
-
 
 export default connect(mapStateToProps)(UserList);
