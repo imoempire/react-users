@@ -10,7 +10,7 @@ import { firestore } from "firebase";
 const store=createStore(UsersReducer, compose (
     applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})),
     reactReduxFirebase(firebase),
-    reduxFirestore(firestore)
+    reduxFirestore(firebase)
 ));
 
 export default store;
