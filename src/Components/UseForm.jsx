@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import { addUser } from '../actions/UsersActions'
+import { addUser, getAllUsers } from '../actions/UsersActions'
 import { connect } from 'react-redux';
 
 class UseForm extends Component {
@@ -26,6 +26,10 @@ class UseForm extends Component {
             email: "",
             gen: ""
         })
+    };
+
+    componentDidMount(){
+        this.props.getAllUsers()
     }
 
     render() {
@@ -67,7 +71,8 @@ class UseForm extends Component {
 }
 
 const mapDispatchToProps = {
-    addNewUser: addUser
+    addNewUser: addUser,
+    getAllUsers: getAllUsers
 }
 
 export default connect(null, mapDispatchToProps)(UseForm);
