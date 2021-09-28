@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import { addUser, getAllUsers } from '../actions/UsersActions'
 import { connect } from 'react-redux';
+import {editUser } from '../actions/UsersActions'
 
 class UseForm extends Component {
     constructor(props){
         super(props);
         this.state={
-            name: '',
-            email: '',
-            gen: ''
-           
+            name: props.user.name || '',
+            email: props.user.email || '' ,
+            gen: props.user.gen || '',
+            id: props.user.id || "", 
         }
     }
     handleChange=(e)=>{
@@ -20,22 +20,19 @@ class UseForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addNewUser(this.state);
+        this.props.editUser(this.state);
         this.setState({
             name: "",
             email: "",
             gen: ""
-        })
-    };
-
-    componentDidMount(){
-        this.props.getAllUsers()
+        });
+        this.props.closeModal();
     }
 
     render() {
         return (
-            <>
-                 <Form onSubmit={this.handleSubmit} style={{color: 'white'}}>
+            <div>
+                 <Form onSubmit={this.handleSubmit}>
                 <Form.Group controlId="formBasicName">
                     <Form.Label htmlFor="name">Name</Form.Label>
                     <Form.Control className="input"
@@ -65,14 +62,11 @@ class UseForm extends Component {
                 </Form.Group>
                     <Button variant="primary" type="submit">Add user</Button>
             </Form>
-            </>
+            </div>
         );
     }
 }
-
-const mapDispatchToProps = {
-    addNewUser: addUser,
-    getAllUsers: getAllUsers
+const mapDispatchToProps ={
+    editUser: editUser,
 }
-
 export default connect(null, mapDispatchToProps)(UseForm);

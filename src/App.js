@@ -1,47 +1,45 @@
-import React, { Component } from 'react';
-import UseForm from './Components/UseForm';
-import User from './Components/User';
-import './App.css';
+import React, { Component } from "react";
+import UseForm from "./Components/UseForm";
+import UserList from "./Components/UserList";
+import "./App.css";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: [
-        {
-          name: 'James',
-          email: 'James@gmail.com',
-          gen: 2
-        },
-        {
-          name: 'John',
-          email: 'John@gmail.com',
-          gen: 12
-        },
-        {
-          name: 'Grace',
-          email: 'Grace@gmail.com',
-          gen: 34
-        },
-      ]
-    }
-  }
-  handleAddUser = (newUser) => { 
+
+
+  handleAddUser = (newUser) => {
+    newUser.id = Math.random().toString();
     this.setState({
-      users: [...this.state.users, newUser]
-    })
+      users: [newUser, ...this.state.users],
+    });
+  };
+    handleDelete =(userId)=>{
+   const keptUsers =this.state.users.filter((user) => {
+     return user.id !== userId;
+   });
+   this.setState({ users: keptUsers });
+  };
+
+  handleEdit=(updatedUser)=>{
+    this.setState({
+      users: this.state.users.map((user) =>
+        user.id === updatedUser.id ? updatedUser : user
+      ),
+    });
   };
   render() {
-    const users = this.state.users.map((user, index) => {
-      return (
-        <User user={user} index={index} />
-      )
-    })
     return (
       <>
-        <h1>ADD A  User</h1>
-        <UseForm addUser={this.handleAddUser} />
-        {users}
+        <h1>ADD A User</h1>
+        <div className="container">
+          <div className="row">
+            <div className="col-3">
+              <UseForm  />
+            </div>
+            <div className="col-9">
+              <UserList/>
+              </div>
+              </div>
+        </div>
       </>
     );
   }
