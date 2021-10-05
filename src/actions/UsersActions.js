@@ -36,7 +36,6 @@ export const getAllUsers =()=>{
     return(dispatch, state, {getFirestore})=>{
         getFirestore()
         .collection('users')
-        .orderBy('name')
         .onSnapshot((snapshot)=>{ 
             let users=[];
                 snapshot.forEach((doc)=>{
