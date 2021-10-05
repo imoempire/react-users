@@ -3,30 +3,7 @@ import UseForm from "./Components/UseForm";
 import UserList from "./Components/UserList";
 import "./App.css";
 
-class App extends Component {
-
-
-  handleAddUser = (newUser) => {
-    newUser.id = Math.random().toString();
-    this.setState({
-      users: [newUser, ...this.state.users],
-    });
-  };
-    handleDelete =(userId)=>{
-   const keptUsers =this.state.users.filter((user) => {
-     return user.id !== userId;
-   });
-   this.setState({ users: keptUsers });
-  };
-
-  handleEdit=(updatedUser)=>{
-    this.setState({
-      users: this.state.users.map((user) =>
-        user.id === updatedUser.id ? updatedUser : user
-      ),
-    });
-  };
-  render() {
+const App =()=> {
     return (
       <>
         <h1>ADD A User</h1>
@@ -42,7 +19,6 @@ class App extends Component {
         </div>
       </>
     );
-  }
 }
 
 export default App;
