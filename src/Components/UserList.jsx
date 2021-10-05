@@ -19,7 +19,7 @@ const UserList = ({ users, handleDelete, handleEdit }) => {
 
 const mapStateToProps = (state)=>{
    return {
-    users: state.users
+    users: state.user.users,
    }
 }
 
