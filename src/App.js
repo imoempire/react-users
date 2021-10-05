@@ -1,35 +1,20 @@
 import React, { Component } from "react";
 import UseForm from "./Components/UseForm";
 import UserList from "./Components/UserList";
+import { useDispatch } from "react-redux";
 import "./App.css";
+import { logout } from "./actions/authActions";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 
-class App extends Component {
+const App =()=> {
+  const{ replace } = useHistory()
+  const dispatch = useDispatch();
 
-
-  handleAddUser = (newUser) => {
-    newUser.id = Math.random().toString();
-    this.setState({
-      users: [newUser, ...this.state.users],
-    });
-  };
-    handleDelete =(userId)=>{
-   const keptUsers =this.state.users.filter((user) => {
-     return user.id !== userId;
-   });
-   this.setState({ users: keptUsers });
-  };
-
-  handleEdit=(updatedUser)=>{
-    this.setState({
-      users: this.state.users.map((user) =>
-        user.id === updatedUser.id ? updatedUser : user
-      ),
-    });
-  };
-  render() {
     return (
       <>
         <h1>ADD A User</h1>
+        <button onClick={()=>dispatch(logout(replace))}>Logout</button>
         <div className="container">
           <div className="row">
             <div className="col-3">
@@ -42,7 +27,10 @@ class App extends Component {
         </div>
       </>
     );
-  }
 }
 
-export default App;
+const mapSTateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
+});
+
+export default connect(mapSTateToProps)(App);
